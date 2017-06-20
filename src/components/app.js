@@ -27,7 +27,6 @@ class App extends Component {
         let weekMaxCarbon = _.get(result, ['data', 'weekMaxCarbon'], null);
         let weekMinCarbon = _.get(result, ['data', 'weekMinCarbon'], null);
         let normalizedBulbVal = (currentCarbon - weekMinCarbon) / (weekMaxCarbon - weekMinCarbon);
-        console.log(normalizedBulbVal)
         this.setState({ currentCarbon, weekAvgCarbon, weekMaxCarbon, weekMinCarbon, normalizedBulbVal });
       });
   }
@@ -39,7 +38,7 @@ class App extends Component {
           <div className="header-hero-section twelve columns">
             <h1 className="header-title">Grid Aware California</h1>
             <Bulb normalizedBulbVal={this.state.normalizedBulbVal}/>
-            <HeaderMessage />
+            <HeaderMessage normalizedBulbVal={this.state.normalizedBulbVal} />
           </div>
         </header>
         <section className="row">
