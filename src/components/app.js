@@ -5,6 +5,7 @@ import _ from 'lodash';
 
 import Config from '../config.json';
 import Bulb from './bulb';
+import CarbonGraph from './carbonGraph';
 import HeaderMessage from './headerMessage';
 
 class App extends Component {
@@ -43,15 +44,18 @@ class App extends Component {
         </header>
         <section className="row">
           <div className="twelve columns">
-            
+            <CarbonGraph />
           </div>
         </section>
-        <img src="../assets/images/cloudL.png"/>
-        <img src="../assets/images/cloudM.png"/>
-        <img src="../assets/images/cloudS.png"/>
+
+        
       </div>
     )
   }
 }
+
+// <img src="../assets/images/cloudL.png"/>
+// <img src="../assets/images/cloudM.png"/>
+// <img src="../assets/images/cloudS.png"/>
 
 export default App;

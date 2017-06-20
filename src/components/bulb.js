@@ -31,8 +31,8 @@ class Bulb extends Component {
   render() {
     return (
         <div className="header-bulb-container">
-						<div className={`bulb-glow-2 red ${this.state.glowSize} ${this.state.shadow}`}></div>
-            <div className={`bulb-glow red ${this.state.glowSize} ${this.state.shadow}`}></div>
+						<div className={`bulb-glow-2 ${this.state.bulbColor} ${this.state.glowSize} ${this.state.shadow}`}></div>
+            <div className={`bulb-glow ${this.state.bulbColor} ${this.state.glowSize} ${this.state.shadow}`}></div>
             <img src="../assets/images/bulb.svg" />
         </div>
     )
