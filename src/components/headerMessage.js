@@ -4,7 +4,7 @@ import Config from '../config.json';
 class HeaderMessage extends Component {
   constructor(props) {
     super(props);
-    this.state = { message: "" };
+    this.state = { message: null };
   }
   componentWillReceiveProps(props){
     let normalizedBulbVal = props.normalizedBulbVal;
@@ -28,8 +28,14 @@ class HeaderMessage extends Component {
   }
   
   render() {
+
+    const valueClass = this.state.message ? "visible" : "invisible";
+    
     return (
-      <div className="header-message">The CA Electric Grid is <span>{this.state.message}</span></div>
+      <div className="header-message">
+          <div className={`header-message-base ${valueClass}`}>The CA Electric Grid is</div>
+          <div className={`header-message-value ${valueClass}`}>{this.state.message}</div>
+      </div>
     );
   }
 }

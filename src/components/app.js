@@ -46,6 +46,9 @@ class App extends Component {
             
           </div>
         </section>
+        <img src="../assets/images/cloudL.png"/>
+        <img src="../assets/images/cloudM.png"/>
+        <img src="../assets/images/cloudS.png"/>
       </div>
     )
   }

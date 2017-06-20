@@ -17,7 +17,7 @@
         height: $bulb-container-height;
         position: relative;
 
-        .bulb-glow {
+        .bulb-glow, .bulb-glow-2 {
             position: absolute;
             border-radius: 50%;
             transition: all 125ms ease;
@@ -38,7 +38,14 @@
 
             &.red {
                 &.shadow {
-                    box-shadow: 0px 0px 120px $red-bulb-shadow, 0px 0px 161px $red-bulb-shadow, 0px 0px 85px $red-bulb-shadow;
+                    box-shadow: 0px 0px 85px $red-bulb-shadow, 
+                                0px 0px 120px $red-bulb-shadow,
+                                0px 0px 161px $red-bulb-shadow;
+
+                    &:after {
+                        box-shadow: 0px 0px 190px $red-bulb-shadow;                        
+                    }
+                    
                 }
                 background-color: $red-bulb;
             }
@@ -75,16 +82,60 @@
         > img {
             height: 100%;
         }
+        
+        .bulb-glow-2 {
+            animation: breath 4s infinite;
+            animation-timing-function: ease-in;
+
+            @keyframes breath {
+                0% {
+                    opacity: 0.2;
+                }
+                50% {
+                    opacity: 0.6;
+                }
+                100% {
+                    opacity: 0.2;
+                }
+            }
+        }
     }
 
-    .header-message {
-        font-family: $font-ubuntu;
-        font-size: 28px;
-        padding-bottom: 10px;
 
-        > span {
+
+    .header-message {
+        font-family: "Ubuntu", sans-serif;
+        font-size: 28px;
+        padding: 6px;
+        background-color: rgba(255,255,255, 0.5);
+        margin-bottom: 9px;
+        border-radius: 15px;
+        width: 450px;    
+        height: 50px;
+        text-align: center;
+        
+        transition: all ease-in 1s;
+
+        .header-message-base, .header-message-value {
+            display: inline-block;
+            transition: opacity 950ms ease-in;
+            
+            &.invisible {
+                opacity: 0.01;
+            }
+
+            &.visible {
+                opacity: 1;
+            }
+        }
+
+        .header-message-base {
+            width: 65%;
+        }
+
+        .header-message-value {
+            text-align: left;
             font-weight: bold;
-            font-size: 30px;
         }
     }
 }

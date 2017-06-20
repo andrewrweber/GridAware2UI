@@ -1,3 +1,8 @@
+@import "mixins";
 @import 'variables';
 @import 'skeleton';
 @import 'header';
+
+body {
+    background-color: rgba(162, 183, 138, 0.2);
+}
