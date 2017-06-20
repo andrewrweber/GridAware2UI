@@ -1,0 +1,23 @@
+// Fonts
+@import url("https://fonts.googleapis.com/css?family=Ubuntu");
+$font-ubuntu: 'Ubuntu', sans-serif;
+
+// DOM Size
+$hero-height: 500px;
+$bulb-container-height: 250px;
+
+// Colors
+$red-bulb: rgba(255, 0, 0, 0.8);
+$red-bulb-shadow: rgba(255, 0, 0, 1);
+
+$orange-bulb: rgba(255, 153, 0, 0.8);
+$orange-bulb-shadow: rgba(255, 153, 0, 1);
+
+$yellow-bulb: rgba(255, 255, 0, 0.8);
+$yellow-bulb-shadow: rgba(255, 255, 0, 1);
+
+$lightgreen-bulb: rgba(173, 255, 0, 0.8);
+$lightgreen-bulb-shadow: rgba(173, 255, 0, 1);
+
+$green-bulb: rgba(34, 139, 34, 0.8);
+$green-bulb-shadow: rgba(34, 139, 34, 1);
