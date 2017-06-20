@@ -1,0 +1,4 @@
+{
+  "apiRoot": "https://us-central1-grid-aware-california.cloudfunctions.net",
+  "carbonStatsEndpoint": "GetWeekCarbonStats"
+}

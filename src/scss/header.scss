@@ -19,33 +19,54 @@
         .bulb-glow {
             position: absolute;
             border-radius: 50%;
-            width: 152px;
-            height: 152px;
-            left: 46px;
-            top: 7px;
+            transition: all 125ms ease;
+
+            &.small {
+                left: 89px;
+                top: 57px;
+                width: 71px;
+                height: 71px;
+            }
+
+            &.large {
+                top: 4px;
+                left: 49px;
+                width: 152px;
+                height: 152px;
+            }
 
             &.red {
-                box-shadow: 0px 0px 120px $red-bulb-shadow, 0px 0px 161px $red-bulb-shadow, 0px 0px 85px $red-bulb-shadow;
+                &.shadow {
+                    box-shadow: 0px 0px 120px $red-bulb-shadow, 0px 0px 161px $red-bulb-shadow, 0px 0px 85px $red-bulb-shadow;
+                }
                 background-color: $red-bulb;
             }
 
             &.orange {
-                box-shadow: 0px 0px 120px $orange-bulb-shadow, 0px 0px 161px $orange-bulb-shadow, 0px 0px 85px $orange-bulb-shadow;
+                &.shadow {
+                    box-shadow: 0px 0px 120px $orange-bulb-shadow, 0px 0px 161px $orange-bulb-shadow, 0px 0px 85px $orange-bulb-shadow;
+                }
                 background-color: $orange-bulb;
             }
 
             &.yellow {
-                box-shadow: 0px 0px 120px $yellow-bulb-shadow, 0px 0px 161px $yellow-bulb-shadow, 0px 0px 85px $yellow-bulb-shadow;
+                &.shadow {
+                    box-shadow: 0px 0px 120px $yellow-bulb-shadow, 0px 0px 161px $yellow-bulb-shadow, 0px 0px 85px $yellow-bulb-shadow;
+                }
                 background-color: $yellow-bulb;
             }
 
             &.lightgreen {
-                box-shadow: 0px 0px 120px $lightgreen-bulb-shadow, 0px 0px 161px $lightgreen-bulb-shadow, 0px 0px 85px $lightgreen-bulb-shadow;
+                &.shadow {
+                    box-shadow: 0px 0px 120px $lightgreen-bulb-shadow, 0px 0px 161px $lightgreen-bulb-shadow, 0px 0px 85px $lightgreen-bulb-shadow;
+                }
                 background-color: $lightgreen-bulb;
             }
 
             &.green {
-                box-shadow: 0px 0px 120px $green-bulb-shadow, 0px 0px 161px $green-bulb-shadow, 0px 0px 85px $green-bulb-shadow;
+                &.shadow {
+                    box-shadow: 0px 0px 120px $green-bulb-shadow, 0px 0px 161px $green-bulb-shadow, 0px 0px 85px $green-bulb-shadow;
+                }
                 background-color: $green-bulb;
             }
         }
