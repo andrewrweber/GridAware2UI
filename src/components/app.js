@@ -54,8 +54,5 @@ class App extends Component {
   }
 }
 
-// <img src="../assets/images/cloudL.png"/>
-// <img src="../assets/images/cloudM.png"/>
-// <img src="../assets/images/cloudS.png"/>
 
 export default App;

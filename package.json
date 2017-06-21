@@ -29,6 +29,7 @@
     "moment": "^2.18.1",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
+    "recharts": "^1.0.0-alpha.1",
     "skeleton-sass-official": "^3.1.4"
   },
   "scripts": {

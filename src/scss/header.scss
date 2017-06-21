@@ -84,7 +84,7 @@
         }
         
         .bulb-glow-2 {
-            animation: breath 4s infinite;
+            animation: breath 1.75s infinite;
             animation-timing-function: ease-in;
 
             @keyframes breath {
@@ -92,7 +92,7 @@
                     opacity: 0.2;
                 }
                 50% {
-                    opacity: 0.6;
+                    opacity: 0.8;
                 }
                 100% {
                     opacity: 0.2;

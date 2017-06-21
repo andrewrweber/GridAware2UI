@@ -2,6 +2,7 @@
   "apiRoot": "https://us-central1-grid-aware-california.cloudfunctions.net",
   "carbonStatsEndpoint": "GetWeekCarbonStats",
   "getGenmixByTimestampEndpoint": "GetGenmixByTimestamp",
+  "numGraphPoints": 15,
   "messages": {
     "red": "Dirty",
     "orange": "Pretty Dirty",
