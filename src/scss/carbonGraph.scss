@@ -1,0 +1,29 @@
+.carbon-graph-container {
+    margin-top: 25px;
+}
+
+.recharts-responsive-container {
+    max-width: 800px;
+}
+
+.generation-mix-chart-label {
+    text-align: center;
+    font-size: 16px;
+}
+
+.recharts-wrapper {
+    text, .recharts-legend-item-text, .recharts-default-tooltip {
+        font-family: $font-open-sans-condensed;
+    }
+
+    .recharts-legend-item-text {
+        font-weight: bold;
+    }
+
+    .recharts-tooltip-item-list {
+        .recharts-tooltip-item {
+            margin-bottom: 0px !important;
+            padding: 2px 0px !important;
+        }
+    }
+}
