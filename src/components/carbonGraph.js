@@ -24,16 +24,22 @@ class CarbonGraph extends Component {
             let dataPoint = carbonData[i];
             let timestamp = moment(dataPoint.timestamp).format('h:mma');
             let carbon = dataPoint.carbon;
-            chartData.push({ timestamp, carbon })
+            let wind = _.get(dataPoint, ['genmix',1, 'gen_MW'], 0);
+            let solar = _.get(dataPoint, ['genmix',2, 'gen_MW'], 0);
+            let renewables = _.get(dataPoint, ['genmix',3, 'gen_MW'], 0);
+            let other = _.get(dataPoint, ['genmix',0 , 'gen_MW'], 0);
+
+            chartData.push({ timestamp, carbon, wind, solar, other, renewables })
         }
         // Push in the last point
         let dataPoint = carbonData[carbonData.length-1];
-        console.log(dataPoint)
         let timestamp = moment(dataPoint.timestamp).format('h:mma');
-        console.log(timestamp);
         let carbon = dataPoint.carbon;
-        chartData.push({ timestamp, carbon })
-        console.log(chartData);
+        let wind = _.get(dataPoint, ['genmix',1, 'gen_MW'], 0);
+        let solar = _.get(dataPoint, ['genmix',2, 'gen_MW'], 0);
+        let renewables = _.get(dataPoint, ['genmix',3, 'gen_MW'], 0);
+        let other = _.get(dataPoint, ['genmix',0 , 'gen_MW'], 0);
+        
         return chartData;
     }
 
@@ -63,18 +69,30 @@ class CarbonGraph extends Component {
         const data = this.state.chartData;
         return (
             <div className="container">
-                {this.state.chartData ? 
+                {this.state.chartData ?
                 <div>
-                <ResponsiveContainer width='100%' aspect={9.0/3.5}>
-                    <LineChart data={data}
-                            margin={{top: 5, right: 30, left: 20, bottom: 5}}>
-                    <XAxis dataKey="timestamp"/>
-                    <YAxis/>
-                    <Tooltip/>
-                    <Legend />
-                    <Line type="monotone" dataKey="carbon" stroke="#8884d8" activeDot={{r: 8}}/>
-                    </LineChart>
-                </ResponsiveContainer>
+                <div className="row">
+                    <div className="twelve columns">
+                        <h3>Past 24 Hours</h3>
+                    </div>
+                </div> 
+                <div className="row">
+                <div className="twelve columns">
+                    <ResponsiveContainer width='100%' aspect={9.0/3.5}>
+                        <LineChart data={data}
+                                margin={{top: 5, right: 30, left: 20, bottom: 5}}>
+                        <XAxis dataKey="timestamp"/>
+                        <YAxis/>
+                        <Tooltip/>
+                        <Legend />
+                        <Line type="monotone" dataKey="renewables" stroke="#26A65B" activeDot={{r: 6}}/>
+                        <Line type="monotone" dataKey="wind" stroke="#4B77BE" activeDot={{r: 6}}/>
+                        <Line type="monotone" dataKey="solar" stroke="#F9BF3B" activeDot={{r: 6}}/>
+                        <Line type="monotone" dataKey="other" stroke="#EC644B" activeDot={{r: 6}}/>
+                        </LineChart>
+                    </ResponsiveContainer>
+                </div>
+                </div>
                 </div>
              : null }
             </div>
