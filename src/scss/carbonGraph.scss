@@ -1,11 +1,12 @@
 .graph-container {
     margin-top: 25px;
     padding: 0px 20px;
-    // max-width: 1440px;
 }
 
-.recharts-responsive-container {
-    // max-width: 800px;
+.line-chart-title {
+    font-size: 20px;
+    font-family: $font-ubuntu;
+    padding-left: 35px;
 }
 
 .generation-mix-chart-label {
