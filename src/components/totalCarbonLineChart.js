@@ -15,7 +15,7 @@ const TotalCarbonLineChart = ({data}) => {
                         <LineChart data={data} title="Total Carbon"
                                 margin={{top: 5, right: 30, left: 20, bottom: 5}}>
                         <XAxis tick={{ transform: 'translate(0, +4)' }} dataKey="timestamp"/>
-                        <YAxis tick={{ transform: 'translate(-1, 0)' }}/>
+                        <YAxis tick={{ transform: 'translate(-1, 0)' }} domain={['dataMin - 100', 'dataMax + 100']} />
                         <Tooltip/>
                         <Legend />
                         <Line type="monotone" unit=" lbs C02" dataKey="carbon" stroke="#EC644B" activeDot={{r: 6}}/>

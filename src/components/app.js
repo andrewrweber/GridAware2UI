@@ -5,7 +5,6 @@ import _ from 'lodash';
 
 import Config from '../config.json';
 import Bulb from './bulb';
-import CarbonGraph from './carbonGraph';
 import GraphContainer from './graphContainer';
 import HeaderMessage from './headerMessage';
 

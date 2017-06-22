@@ -7,6 +7,7 @@ const {LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Responsive
 
 import GenmixLineChart from './genmixLineChart';
 import TotalCarbonLineChart from './totalCarbonLineChart';
+import CombinedLineChart from './combinedLineChart';
 
 import Config from '../config.json';
 
@@ -14,7 +15,7 @@ class GraphContainer extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            chartData: null
+            chartData: null,
         };
     }
 
@@ -22,11 +23,11 @@ class GraphContainer extends Component {
         const numPoints = Config.numGraphPoints;
         const interval = Math.floor(carbonData.length / numPoints);
         let chartData=[];
-        
+
         for(let i = 0; i < carbonData.length; i+=interval) {
             let dataPoint = carbonData[i];
             let timestamp = moment(dataPoint.timestamp).format('h:mma');
-            let carbon = dataPoint.carbon;
+            let carbon = Math.round(dataPoint.carbon);
             let wind = _.get(dataPoint, ['genmix',1, 'gen_MW'], 0);
             let solar = _.get(dataPoint, ['genmix',2, 'gen_MW'], 0);
             let renewables = _.get(dataPoint, ['genmix',3, 'gen_MW'], 0);
@@ -37,14 +38,15 @@ class GraphContainer extends Component {
         // Push in the last point
         let dataPoint = carbonData[carbonData.length-1];
         let timestamp = moment(dataPoint.timestamp).format('h:mma');
-        let carbon = dataPoint.carbon;
+        let carbon = Math.round(dataPoint.carbon);
         let wind = _.get(dataPoint, ['genmix',1, 'gen_MW'], 0);
         let solar = _.get(dataPoint, ['genmix',2, 'gen_MW'], 0);
         let renewables = _.get(dataPoint, ['genmix',3, 'gen_MW'], 0);
         let other = _.get(dataPoint, ['genmix',0 , 'gen_MW'], 0);
+
         chartData.push({ timestamp, carbon, wind, solar, other, renewables })
 
-        return chartData;
+        return { chartData };
     }
 
     componentWillMount() {
@@ -63,7 +65,8 @@ class GraphContainer extends Component {
             }
         })
         .then((result) => {
-            const chartData = this.transforDataForCharts(result.data);
+            const data = this.transforDataForCharts(result.data);
+            let { chartData } = data;
             this.setState({ chartData });
         });
     }
@@ -75,13 +78,8 @@ class GraphContainer extends Component {
                 {this.state.chartData ?
                 <div className="container">
                     <div className="row">
-                        <div className="twelve columns ">
-                            <GenmixLineChart data={this.state.chartData} />
-                        </div>
-                    </div>
-                    <div className="row">
                         <div className="twelve columns">
-                            <TotalCarbonLineChart data={this.state.chartData} />
+                            <CombinedLineChart data={this.state.chartData}  />
                         </div>
                     </div>
                 </div>
@@ -92,3 +90,14 @@ class GraphContainer extends Component {
 }
 
 export default GraphContainer;
+
+                    // <div className="row">
+                    //     <div className="twelve columns ">
+                    //         <GenmixLineChart data={this.state.chartData} />
+                    //     </div>
+                    // </div>
+                    // <div className="row">
+                    //     <div className="twelve columns">
+                    //         <TotalCarbonLineChart data={this.state.chartData}  />
+                    //     </div>
+                    // </div>
