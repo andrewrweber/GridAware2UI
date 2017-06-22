@@ -6,6 +6,7 @@ import _ from 'lodash';
 import Config from '../config.json';
 import Bulb from './bulb';
 import CarbonGraph from './carbonGraph';
+import GraphContainer from './graphContainer';
 import HeaderMessage from './headerMessage';
 
 class App extends Component {
@@ -44,11 +45,9 @@ class App extends Component {
         </header>
         <section className="row">
           <div className="twelve columns">
-            <CarbonGraph />
+            <GraphContainer />
           </div>
         </section>
-
-        
       </div>
     )
   }

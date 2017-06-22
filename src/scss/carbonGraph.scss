@@ -1,9 +1,11 @@
-.carbon-graph-container {
+.graph-container {
     margin-top: 25px;
+    padding: 0px 20px;
+    // max-width: 1440px;
 }
 
 .recharts-responsive-container {
-    max-width: 800px;
+    // max-width: 800px;
 }
 
 .generation-mix-chart-label {
@@ -12,6 +14,16 @@
 }
 
 .recharts-wrapper {
+    .recharts-line {
+        > path {
+            stroke-width: 3;            
+        }
+    }
+
+    .recharts-cartesian-axis-tick-value, .recharts-legend-item-text {
+        font-size: 18px;
+    }
+
     text, .recharts-legend-item-text, .recharts-default-tooltip {
         font-family: $font-open-sans-condensed;
     }
