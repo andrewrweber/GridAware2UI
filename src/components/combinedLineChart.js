@@ -11,7 +11,7 @@ const CombinedLineChart = ({data}) => {
             </div>
             <div className="row">
                 <div className="twelve columns">
-                    <ResponsiveContainer width='100%' aspect={9.0/4}>
+                    <ResponsiveContainer width='100%' aspect={9.0/2.75}>
                         <LineChart data={data}
                                 margin={{top: 5, right: 30, left: 20, bottom: 5}}>
                         <XAxis tick={{ transform: 'translate(0, +4)' }} dataKey="timestamp"/>
