@@ -2,6 +2,7 @@
     background: url('../assets/images/hero.jpg') 50% no-repeat;
     background-size: cover;
     height: $hero-height;
+    min-height: $hero-min-height;
 
     display: flex;
     flex-direction: column;
@@ -23,15 +24,15 @@
             transition: all 125ms ease;
 
             &.small {
-                left: 69px;
-                top: 57px;
+                left: 114px;
+                top: 88px;
                 width: 71px;
                 height: 71px;
             }
 
             &.large {
-                top: 4px;
-                left: 29px;
+                top: 12px;
+                left: 73px;
                 width: 152px;
                 height: 152px;
             }

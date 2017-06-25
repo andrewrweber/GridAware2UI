@@ -3,7 +3,7 @@ import {LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Responsiv
 
 const CombinedLineChart = ({data}) => {
     return (
-        <div>
+        <div className="combined-line-chart-wrapper">
             <div className="row">
                 <div className="twelve columns line-chart-title">
                     Past 24 Hours Electric Generation Mix
@@ -11,7 +11,7 @@ const CombinedLineChart = ({data}) => {
             </div>
             <div className="row">
                 <div className="twelve columns">
-                    <ResponsiveContainer width='100%' aspect={9.0/2.75}>
+                    <ResponsiveContainer width='100%' aspect={9.0/4}>
                         <LineChart data={data}
                                 margin={{top: 5, right: 30, left: 20, bottom: 5}}>
                         <XAxis tick={{ transform: 'translate(0, +4)' }} dataKey="timestamp"/>

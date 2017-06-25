@@ -5,8 +5,11 @@ $font-ubuntu: 'Ubuntu', sans-serif;
 $font-open-sans-condensed: 'Open Sans Condensed', sans-serif;
 
 // DOM Size
-$hero-height: 390px;
-$bulb-container-height: 210px;
+$hero-height: 100vh;
+$hero-min-height: 460px;
+$bulb-container-height: 300px;
+
+$chart-size: 100vh;
 
 // Colors
 $red-bulb: rgba(255, 0, 0, 0.8);

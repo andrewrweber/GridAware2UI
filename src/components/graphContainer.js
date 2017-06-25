@@ -5,8 +5,6 @@ import _ from 'lodash';
 
 const {LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer} = require('recharts');
 
-import GenmixLineChart from './genmixLineChart';
-import TotalCarbonLineChart from './totalCarbonLineChart';
 import CombinedLineChart from './combinedLineChart';
 
 import Config from '../config.json';

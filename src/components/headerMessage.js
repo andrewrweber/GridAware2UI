@@ -24,7 +24,6 @@ class HeaderMessage extends Component {
 		else {
 			this.setState({ message: Config.messages['red']});
 		}
-  console.log(Config.messages['red']);
   }
   
   render() {
