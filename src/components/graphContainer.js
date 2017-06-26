@@ -6,6 +6,7 @@ import _ from 'lodash';
 const {LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer} = require('recharts');
 
 import CombinedLineChart from './combinedLineChart';
+import ChartControls from './chartControls';
 
 import Config from '../config.json';
 
@@ -13,7 +14,33 @@ class GraphContainer extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            chartData: null,
+            chartData: null
+        };
+
+        this.changeDataRange = this.changeDataRange.bind(this);
+        this.fetchData = this.fetchData.bind(this);
+    }
+    
+    changeDataRange(range) {
+        const endTime = moment().unix();
+        if(range === "Day") {
+            const startTime = endTime - (60 * 60 * 24 * 1);
+            this.fetchData(startTime, endTime);
+        }
+        else if(range === "Week") {
+            const startTime = endTime - (60 * 60 * 24 * 7);
+            this.fetchData(startTime, endTime);       
+        }
+    }
+
+    createChartPoint(element) {
+        return {
+            timestamp: moment(element.timestamp).format('ddd h:mma'),
+            carbon: Math.round(element.carbon),
+            wind: _.get(element, ['genmix',1, 'gen_MW'], 0),
+            solar: _.get(element, ['genmix',2, 'gen_MW'], 0),
+            renewables: _.get(element, ['genmix',3, 'gen_MW'], 0),
+            other: _.get(element, ['genmix',0 , 'gen_MW'], 0)
         };
     }
 
@@ -23,34 +50,23 @@ class GraphContainer extends Component {
         let chartData=[];
 
         for(let i = 0; i < carbonData.length; i+=interval) {
-            let dataPoint = carbonData[i];
-            let timestamp = moment(dataPoint.timestamp).format('h:mma');
-            let carbon = Math.round(dataPoint.carbon);
-            let wind = _.get(dataPoint, ['genmix',1, 'gen_MW'], 0);
-            let solar = _.get(dataPoint, ['genmix',2, 'gen_MW'], 0);
-            let renewables = _.get(dataPoint, ['genmix',3, 'gen_MW'], 0);
-            let other = _.get(dataPoint, ['genmix',0 , 'gen_MW'], 0);
-
-            chartData.push({ timestamp, carbon, wind, solar, other, renewables });
+            chartData.push(this.createChartPoint(carbonData[i]));
         }
         // Push in the last point
-        let dataPoint = carbonData[carbonData.length-1];
-        let timestamp = moment(dataPoint.timestamp).format('h:mma');
-        let carbon = Math.round(dataPoint.carbon);
-        let wind = _.get(dataPoint, ['genmix',1, 'gen_MW'], 0);
-        let solar = _.get(dataPoint, ['genmix',2, 'gen_MW'], 0);
-        let renewables = _.get(dataPoint, ['genmix',3, 'gen_MW'], 0);
-        let other = _.get(dataPoint, ['genmix',0 , 'gen_MW'], 0);
+        let lastPoint = carbonData[carbonData.length-1];
 
-        chartData.push({ timestamp, carbon, wind, solar, other, renewables })
+        chartData.push(this.createChartPoint(lastPoint));
 
         return { chartData };
     }
 
     componentWillMount() {
-        const timeNow = moment().unix();
-        const weekAgo = timeNow - (60 * 60 * 24 * 1);
+        const endTime = moment().unix();
+        const startTime = endTime - (60 * 60 * 24 * 1);
+        this.fetchData(startTime, endTime);
+    }
 
+    fetchData(startTime, endTime) {
         axios({
             url: `${Config.apiRoot}/${Config.getGenmixByTimestampEndpoint}`,
             method: 'post',
@@ -58,8 +74,8 @@ class GraphContainer extends Component {
                 'Content-Type': 'application/json'
             },
             data: {
-                "min": weekAgo,
-                "max": timeNow
+                "min": startTime,
+                "max": endTime
             }
         })
         .then((result) => {
@@ -76,6 +92,11 @@ class GraphContainer extends Component {
                 {this.state.chartData ?
                 <div className="container">
                     <div className="row">
+                        <div className="three columns">
+                            <ChartControls changeDataRange={this.changeDataRange} />
+                        </div>
+                    </div>
+                    <div className="row">
                         <div className="twelve columns">
                             <CombinedLineChart data={this.state.chartData}  />
                         </div>
@@ -88,14 +109,3 @@ class GraphContainer extends Component {
 }
 
 export default GraphContainer;
-
-                    // <div className="row">
-                    //     <div className="twelve columns ">
-                    //         <GenmixLineChart data={this.state.chartData} />
-                    //     </div>
-                    // </div>
-                    // <div className="row">
-                    //     <div className="twelve columns">
-                    //         <TotalCarbonLineChart data={this.state.chartData}  />
-                    //     </div>
-                    // </div>

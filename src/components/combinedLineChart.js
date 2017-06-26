@@ -1,12 +1,12 @@
 import React from 'react';
 import {LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer} from 'recharts';
-
 const CombinedLineChart = ({data}) => {
+
     return (
         <div className="combined-line-chart-wrapper">
             <div className="row">
                 <div className="twelve columns line-chart-title">
-                    Past 24 Hours Electric Generation Mix
+                
                 </div>
             </div>
             <div className="row">
@@ -20,7 +20,7 @@ const CombinedLineChart = ({data}) => {
                         <YAxis yAxisId="right" orientation="right"
                             tick={{ transform: 'translate(-1, 0)' }} domain={['dataMin - 100', 'dataMax + 100']} />
                         <Tooltip/>
-                        <Legend />
+                        <Legend/>
                         <Line yAxisId="left" type="monotone" unit=" MW" dataKey="wind" stroke="#4B77BE" activeDot={{r: 6}}/>
                         <Line yAxisId="left" type="monotone" unit=" MW" dataKey="solar" stroke="#F9BF3B" activeDot={{r: 6}}/>
                         <Line yAxisId="left" type="monotone" unit=" MW" dataKey="renewables" name="other renewables" stroke="#26A65B" activeDot={{r: 6}}/>
